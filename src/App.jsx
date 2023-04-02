@@ -1,5 +1,3 @@
-import { useState } from 'react'
-// import './App.css'
 import Hero from './components/Hero'
 import Works from './components/Works'
 import Contact from './components/Contact'
@@ -13,6 +11,7 @@ const Container = styled.div`
   overflow-y: auto;
   scrollbar-width: none;
   color: white;
+  background: url("./img/bg.jpeg");
   &::-webkit-scrollbar{
     display: none;
   }
