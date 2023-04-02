@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import WebDesign from './works/WebDesign'
+import Development from './works/Development'
+import ProductDesign from './works/ProductDesign'
 
 const data = [
   "Web design", 
@@ -13,6 +16,8 @@ const Section = styled.div`
   scroll-snap-align: center;
   display: flex;
   justify-content: center;
+  position: relative;
+  color: black
 `
 const Container = styled.div`
   width: 1400px;
@@ -65,16 +70,24 @@ const ListItem = styled.li`
   }
 `
 const Works = () => {
+
+  const [work, setWork] = useState("Web design")
+
   return (
     <Section>
       <Container>
         <Left>
           <List>
-            {data.map((item)=>(<ListItem key={item} text={item}>{item}</ListItem>))}
+            {data.map((item)=>(
+            <ListItem key={item} text={item} onClick={()=>setWork(item) }>{item} </ListItem>))}
             
           </List>
         </Left>
-        <Right></Right>
+        <Right>
+        {work === "Web design" ? ( <WebDesign />):
+        work === "Development" ? (<Development />):
+        work ==="Product Design" && (<ProductDesign />)} 
+        </Right>
       </Container>
     </Section>
   )
