@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import styled from 'styled-components'
 import NavBar from './NavBar'
+
+import { OrbitControls, Sphere, MeshDistortMaterial } from '@react-three/drei'
+import Cube from './Cube'
+import { Canvas } from '@react-three/fiber'
+
 
 const Section = styled.div`
   height: 100vh;
@@ -70,6 +75,7 @@ const Img = styled.img`
 width: 800px;
 height: 600px;
 object-fit: contain;
+position: absolute;
 top: 0;
 left: 0;
 right: 0;
@@ -99,7 +105,21 @@ const Hero = () => {
           <Button>Learn More</Button>
         </Left>
         <Right>
-          {/* 3d model */}
+        <Canvas>
+            <Suspense fallback={null}>
+              <OrbitControls enableZoom={false} />
+              <ambientLight intensity={1} />
+              <directionalLight position={[3, 2, 1]} />
+              <Sphere args={[1, 100, 200]} scale={2.4}>
+                <MeshDistortMaterial
+                  color="#3d1c56"
+                  attach="material"
+                  distort={0.5}
+                  speed={2}
+                />
+              </Sphere>
+            </Suspense>
+          </Canvas>
           <Img src="./img/moon.png"/>
         </Right>
       </Container>
